@@ -1,0 +1,392 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+}
+
+@media all and (min-width: 992px) {
+    html {
+        font-size: calc(100vw / 1 );
+    }
+}
+
+@media all and (min-width: 1400px) {
+    html {
+        font-size: calc(100vw * 0.006 );
+    }
+}
+
+body {
+    font-family: "Exo 2", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    background-color: #2B2B2B;
+    height: 100%;
+    width: 100%;
+    line-height: normal;
+}
+
+.slope__line {
+    margin-left: 1.25rem; 
+    width: 9.375rem; 
+    transform: skew(-40deg);
+    z-index: 999;
+} 
+
+/* Шапка сайта*/
+
+.logo {
+    width: 23.125rem;
+    height: 23.125rem;
+    /* width: 370px;
+    height: 370px; */
+    /* margin-left: 40px;
+    margin-right: 60px; */
+    margin-left: 2.5rem;
+    margin-right: 3.75rem;
+}
+
+header {
+    background-color: #27D9A3;
+    width: 100%;
+    /* height: 437px; */
+    height: 27.3125rem;
+    color: #2B2B2B;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.slope__line__header {
+    margin-left: 1.25rem;
+    /* margin-left: 20px;  */
+    /* width: 150px; 
+    height: 437px; */
+    width: 9.375rem; 
+    height: 27.3125rem;
+    background: #2B2B2B;
+    background: linear-gradient(195deg, rgb(29, 169, 127) 5%, rgba(43, 43, 43, 1) 95%)
+}
+
+.header__title {
+    font-size: 4rem;
+    text-align: center;
+    min-width: 25rem;
+    font-weight: 600;
+}
+
+.header__title span {
+    display: block;
+}
+
+.contacts {
+    display: flex;
+    flex-direction: column;
+    row-gap: 3.125rem;
+}
+
+.contacts img {
+    opacity: 80%;
+}
+
+.contacts span{
+    padding-left: 1rem;
+}
+
+.contact {
+    display: flex;
+    align-items: center;
+    column-gap: 0.938rem;
+}
+
+.location {
+    margin-left: 9.375rem;
+}
+
+.phone__number {
+    margin-left: 4.688rem;
+}
+
+.horizontal__line {
+    width: 110.625rem;
+    height: 1.563rem;
+    border-radius: 1.563rem;
+    display: block;
+    margin: auto;
+    margin-top: 2.563rem;
+    margin-bottom: 2.563rem;
+    background: #2B2B2B;
+    background: linear-gradient(to right,rgb(66, 66, 66) 0%, rgb(33, 183, 138) 50%, rgb(66, 66, 66) 100%);
+    animation: gradient 10s ease infinite;
+    background-size: 400% 400%;
+}
+
+@keyframes gradient {
+    0% {
+        background-position-x: left;
+    }
+    
+    50% {
+        background-position-x: right;
+    }
+
+    100% {
+        background-position-x: left;
+    }
+}
+
+.flex__container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+/* Основной блок */
+
+.main__films {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-evenly;
+    width: 100%;
+    gap: 3.125rem;
+}
+
+.film__card {
+    border-radius: 1.875rem;
+    display: flex;
+    background-color: #1d1f1f;
+    flex-direction: column;
+    text-decoration: none;
+    width: max-content;
+    width: 26.875rem;
+    height: fit-content;
+    border: #222424 5px solid;
+    transition: all 0.5s ease;
+    padding-bottom: 0.625rem;
+    overflow: hidden;
+}
+
+.film__card:hover {
+    transform: scale(1.05);
+    filter: brightness(85%);
+}
+
+.film__card img {
+    border-radius: 1.25rem;
+}
+
+.info__row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    font-size: 2.5rem;
+}
+
+.card__info {
+    margin-top: 0.625rem;
+    display: flex;
+    flex-direction: column;
+    font-size: 3.125rem;
+    color: #21ad83;
+    text-align: center;
+    transition: all 0.7s ease;
+}
+
+.film__card button {
+    position: absolute;
+    top: 38.125rem;
+    background-color: #424242;
+    color: #2A8167;
+    margin-top: 6.25rem;
+    margin-left: 3.75rem;
+    width: 18.75rem;
+    height: 6.563rem;
+    border-radius: 2.5rem;
+    text-align: center;
+    font-size: 3.875rem;
+    font-weight: bold;
+    border: none;
+    opacity: 0;
+    transition: all 1s ease;
+    transition-delay: 0.1s;;
+}
+
+.film__card:hover button {
+    display: block;
+    margin-top: 0;
+    margin-left: 3.875rem;
+    width: 18.75rem;
+    height: 6.563rem;
+    opacity: 1;
+}
+
+.film__card:hover .card__info {
+    opacity: 0;
+}
+
+.active {
+    background-color: #168161;
+    color: #168161;
+    text-decoration: none;
+}
+
+/* Подвал сайта */
+
+footer {
+    background-color: #27D9A3;
+    width: 100%;
+}
+
+.contact-information__row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: 1.875rem;
+}
+
+/* Данные о школе */
+
+.school__card {
+    margin-top: 2rem;
+    font-size: 1.563rem;
+}
+
+.school__title {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.school__title img {
+    width: 6rem;
+    height: 5.125rem;
+}
+
+.school__title span {
+    padding-left: 0.813rem;
+}
+
+.school__description {
+    font-style: italic;
+    max-width: 25.313rem;
+}
+
+
+.slope__line__footer {
+background: #2B2B2B;
+background: linear-gradient(195deg,rgba(43, 43, 43, 1) 10%, rgba(39, 217, 163, 1) 160%)
+}
+
+/* ссылки на соцсети */
+
+.social-media__card {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    margin-top: 2.188rem;
+    margin-bottom: 1.25rem;
+    font-size: 2.188rem;
+    font-style: italic;
+    gap: 1.875rem;
+}
+
+.media {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2.375rem;
+}
+
+.media img {
+    height: 5rem;
+    width: 5rem;
+}
+
+/* ресурсы данных */
+
+.resource__card {
+    padding-bottom: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.resource__card span {
+    font-size: 1.563rem;
+    max-width: 18.125rem;
+    text-align: center;
+}
+
+/* анимации */
+
+html {
+  height:100%;
+}
+
+.bg_line {
+  animation:slide 3s ease-in-out infinite alternate;
+  background-image: linear-gradient(-60deg, rgb(63, 63, 63) 50%, rgb(33, 78, 67) 50%);
+  bottom:0;
+  left:-50%;
+  opacity:.5;
+  position:fixed;
+  right:-50%;
+  top:0;
+  z-index:-1;
+}
+
+.bg_line2 {
+  animation-direction:alternate-reverse;
+  animation-duration:20s;
+}
+
+.bg_line3 {
+  animation-duration:25s;
+}
+
+@keyframes slide {
+  0% {
+    transform:translateX(-25%);
+  }
+  100% {
+    transform:translateX(25%);
+  }
+}
+
+/* Пагинация */
+ul.pagination {
+    font-size: 3.75rem;
+    margin-top: 2.563rem;
+}
+.page-link {
+    color: black;
+    background-color: #737171;
+    border-top: #2B2B2B solid 7px;
+    border-bottom: #2B2B2B solid 7px;
+    text-decoration: none;
+
+}
+.page-link:hover {
+    color: black;
+    background-color: #575656;
+    border: #2B2B2B solid 4px;
+}
+
+.current {
+    background-color: #168161;
+}
+
+.inactive {
+    background-color: #575656;
+}
