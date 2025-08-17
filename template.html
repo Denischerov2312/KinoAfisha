@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <title>KinoTime</title>
-    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="icon" href="../images/favicon.ico">
-    <link rel="stylesheet" href="../style.css" />
+    <link href="../assets/style/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/style/style.css" />
+    <link rel="icon" href="../assets/images/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -22,21 +22,21 @@
 
         <div class="slope__line__header slope__line"></div>
     
-        <img class="logo" src="../images/logo2.png" alt="Логотип">
+        <img class="logo" src="../assets/images/logo.png" alt="Логотип">
 
         <div class="slope__line__header slope__line"></div>
 
         <div class="contacts">
           <div class="location contact">
-            <img src="../images/location.png" alt="геопозиция" class="location__icon">
+            <img src="../assets/images/location.png" alt="геопозиция" class="location__icon">
             <span>Россия</span>
           </div>
           <div class="phone__number contact">
-            <img src="../images/phone_number.png" alt="Иконка телефона" class="phone_icon">
+            <img src="../assets/images/phone_number.png" alt="Иконка телефона" class="phone_icon">
             <span>+78005553535</span>
           </div>
           <div class="email contact">
-            <img src="../images/email.png" alt="Почта" class="emal_icon">
+            <img src="../assets/images/email.png" alt="Почта" class="emal_icon">
             <span>Kintime@mail.com</span>
           </div>
         </div>
@@ -68,34 +68,34 @@
             {% if current_page == 2 %}
               <li class="page-item">
                 <a class="page-link" href="../{{dest_folder|urlencode}}index.html" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
+                  <img src="../assets/images/two-left.png" alt="">
                 </a>
               </li>
               <li class="page-item">
                 <a class="page-link" href="../{{dest_folder|urlencode}}index.html" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
+                  <img src="../assets/images/left.png" alt="">
                 </a>
               </li>
             {% elif current_page == 1 %}
               <li class="page-item">
                 <a class="page-link inactive" href="../{{dest_folder|urlencode}}index.html" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
+                  <img src="../assets/images/two-left.png" alt="">
                 </a>
               </li>
               <li class="page-item">
                 <a class="page-link inactive" href="../{{dest_folder|urlencode}}index.html" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
+                  <img src="../assets/images/left.png" alt="">
                 </a>
               </li>
             {% else %}
               <li class="page-item">
                 <a class="page-link" href="../{{dest_folder|urlencode}}index.html" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
+                  <img src="../assets/images/two-left.png" alt="">
                 </a>
               </li>
               <li class="page-item">
                 <a class="page-link" href="../{{dest_folder|urlencode}}index{{current_page - 1}}.html" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
+                  <img src="../assets/images/left.png" alt="">
                 </a>
               </li>
             {% endif %}
@@ -117,23 +117,23 @@
             {% if current_page >= page_count %}
             <li class="page-item">
               <a class="page-link inactive" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
+                <img src="../assets/images/right.png" alt="">
               </a>
             </li>
             <li class="page-item">
               <a class="page-link inactive" href="../{{dest_folder|urlencode}}index{{page_count}}.html" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
+                <img src="../assets/images/two-right.png" alt="">
               </a>
             </li>
             {% else %}
               <li class="page-item">
-                <a class="page-link" href="../{{dest_folder|urlencode}}index{{current_page + 1}}.html" aria-label="Next">
-                  <span aria-hidden="true">&raquo;</span>
+                <a class="page-link" href="../{{dest_folder|urlencode}}index{{current_page + 1}}.html">
+                  <img src="../assets/images/right.png" alt="">
                 </a>
               </li>
               <li class="page-item">
-                <a class="page-link" href="../{{dest_folder|urlencode}}index{{page_count}}.html" aria-label="Next">
-                  <span aria-hidden="true">&raquo;</span>
+                <a class="page-link" href="../{{dest_folder|urlencode}}index{{page_count}}.html">
+                  <img src="../assets/images/two-right.png" alt="">
                 </a>
               </li>
             {% endif %}
@@ -146,7 +146,7 @@
       <div class="contact-information__row">
         <div class="school__card">
           <div class="school__title">
-            <img src="../images/school_logo.png" alt="">
+            <img src="../assets/images/school_logo.png" alt="">
             <span>Третье место</span>
           </div>
           <div class="school__description">Проект реализован для школы "Третье место" в обучающих целях</div>
@@ -155,20 +155,20 @@
         <div class="social-media__card">
           <p>Подпишитесь также:</p>
           <div class="media">
-            <a href="#"><img src="../images/vk_logo.png" alt=""></a>
-            <a href="#"><img src="../images/tg_logo.png" alt=""></a>
-            <a href="#"><img src="../images/youtube_logo.png" alt=""></a>
+            <a href="#"><img src="../assets/images/vk_logo.png" alt="Логотип ВК"></a>
+            <a href="#"><img src="../assets/images/tg_logo.png" alt="Логотип телеграмма"></a>
+            <a href="#"><img src="../assets/images/youtube_logo.png" alt="Логотип ютуб"></a>
           </div>
         </div>
         <div class="slope__line__footer slope__line"></div>
         <div class="resource__card">
           <div class="resource__logo">
-            <img src="../images/logo_kinoafisha.png" alt="">
+            <img src="../assets/images/logo_kinoafisha.png" alt="">
           </div>
           <span>Данные взяты с сайта <a href="https://www.kinoafisha.info/">kinoafisha.info</a></span>
         </div>
       </div>
     </footer>
-  <script src="static/js/bootstrap.min.js"></script>
+  <script src="../assets/scripts/bootstrap.min.js"></script>
   </body>
 </html>
