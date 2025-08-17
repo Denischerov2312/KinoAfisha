@@ -9,20 +9,9 @@
 html {
     width: 100%;
     height: 100%;
-    font-size: 16px;
+    font-size: 1.5vh;
 }
 
-/* @media all and (min-width: 992px) {
-    html {
-        font-size: calc(100vw / 1 );
-    }
-}
-
-@media all and (min-width: 1400px) {
-    html {
-        font-size: calc(100vw * 0.006 );
-    }   
-} */
 
 body {
     font-family: "Exo 2", sans-serif;
@@ -32,13 +21,14 @@ body {
     height: 100%;
     width: 100%;
     line-height: normal;
+    z-index: 1;
 }
 
 .slope__line {
-    margin-left: 1.25rem; 
+    margin-left: 1.25rem;
     width: 9.375rem; 
     transform: skew(-40deg);
-    z-index: 999;
+    z-index: 2;
 } 
 
 /* Шапка сайта*/
@@ -46,8 +36,8 @@ body {
 .logo {
     width: 23.125rem;
     height: 23.125rem;
-    margin-left: 2.5rem;
-    margin-right: 3.75rem;
+    margin-left: 4rem;
+    margin-right: 6rem;
 }
 
 header {
@@ -167,7 +157,7 @@ header {
     text-decoration: none;
     width: 26.875rem;
     height: fit-content;
-    border: #222424 5px solid;
+    border: #222424 0.313rem solid;
     transition: all 0.5s ease;
     padding-bottom: 0.625rem;
     overflow: hidden;
@@ -390,7 +380,7 @@ li.page-item {
 
 .page-link:hover {
     color: black;
-    background-color: #575656;
+    background-color: #504f4f;
     border: #2B2B2B solid 0.313rem;
 }
 
@@ -400,5 +390,5 @@ li.page-item {
 }
 
 .inactive {
-    background-color: #575656;
+    background-color: #504f4f;
 }
