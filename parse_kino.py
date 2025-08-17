@@ -6,10 +6,12 @@ from time import sleep
 from os.path import join, split
 from urllib.parse import unquote
 from dotenv import load_dotenv
+from datetime import date
 
 load_dotenv()
 PARSING_URL = os.getenv('PARSING_URL', default=r'https://nn.kinoafisha.info/movies/')
 FILMS_FILE = os.getenv('FILMS_FILE', default=r'films.json')
+DATE = os.getenv('DATE', default=date.today())
 
 
 def get_title(soup):
@@ -61,29 +63,34 @@ def save(films_data):
         json.dump(films_data, file, ensure_ascii=False)
 
 
-def parse():
+def get_response(url):
     while True:
-        films_data = []
         try:
-            response = requests.get(PARSING_URL)
+            response = requests.get(url, params={'date': DATE})
             response.raise_for_status()
             check_for_redirect(response)
-            films_soup = Soup(response.text, 'html.parser')
-            soups = films_soup.select_one('.movieList-grid').select('.grid_cell4')
-            for soup in soups:
-                film = {
-                    'title': get_title(soup),
-                    'genre': get_genre(soup),
-                    'year': get_year(soup),
-                    'country': get_country(soup),
-                    'img_path': download_image(get_img_url(soup), 'film_covers'),
-                    'ticket_url': get_ticket_url(soup)
-                }
-                films_data.append(film)
-            return films_data
+            return response
         except ConnectionError:
             print('Подключение отсутствует')
             sleep(10)
+
+
+def parse():
+    films_data = []
+    response = get_response(PARSING_URL)
+    films_soup = Soup(response.text, 'html.parser')
+    soups = films_soup.select_one('.movieList-grid').select('.grid_cell4')
+    for soup in soups:
+        film = {
+            'title': get_title(soup),
+            'genre': get_genre(soup),
+            'year': get_year(soup),
+            'country': get_country(soup),
+            'img_path': download_image(get_img_url(soup), 'film_covers'),
+            'ticket_url': get_ticket_url(soup)
+        }
+        films_data.append(film)
+    return films_data
 
 
 def main():
