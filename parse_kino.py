@@ -5,6 +5,11 @@ from bs4 import BeautifulSoup as Soup
 from time import sleep
 from os.path import join, split
 from urllib.parse import unquote
+from dotenv import load_dotenv
+
+load_dotenv()
+PARSING_URL = os.getenv('PARSING_URL', default=r'https://nn.kinoafisha.info/movies/')
+FILMS_FILE = os.getenv('FILMS_FILE', default=r'films.json')
 
 
 def get_title(soup):
@@ -51,31 +56,40 @@ def download_image(url, folder):
         return None
 
 
-def parse_and_save():
-    films_data = []
-    try:
-        url = r'https://nn.kinoafisha.info/movies/'
-        response = requests.get(url)
-        response.raise_for_status()
-        check_for_redirect(response)
-        films_soup = Soup(response.text, 'html.parser')
-        soups = films_soup.select_one('.movieList-grid').select('.grid_cell4')
-        for soup in soups:
-            film = {
-                'title': get_title(soup),
-                'genre': get_genre(soup),
-                'year': get_year(soup),
-                'country': get_country(soup),
-                'img_path': download_image(get_img_url(soup), 'film_covers'),
-                'ticket_url': get_ticket_url(soup)
-            }
-            films_data.append(film)
-        with open(r'films.json', 'w', encoding='utf8') as file:
-            json.dump(films_data, file, ensure_ascii=False)
-    except ConnectionError:
-        print('Подключение отсутствует')
-        sleep(10)
+def save(films_data):
+    with open(FILMS_FILE, 'w', encoding='utf8') as file:
+        json.dump(films_data, file, ensure_ascii=False)
+
+
+def parse():
+    while True:
+        films_data = []
+        try:
+            response = requests.get(PARSING_URL)
+            response.raise_for_status()
+            check_for_redirect(response)
+            films_soup = Soup(response.text, 'html.parser')
+            soups = films_soup.select_one('.movieList-grid').select('.grid_cell4')
+            for soup in soups:
+                film = {
+                    'title': get_title(soup),
+                    'genre': get_genre(soup),
+                    'year': get_year(soup),
+                    'country': get_country(soup),
+                    'img_path': download_image(get_img_url(soup), 'film_covers'),
+                    'ticket_url': get_ticket_url(soup)
+                }
+                films_data.append(film)
+            return films_data
+        except ConnectionError:
+            print('Подключение отсутствует')
+            sleep(10)
+
+
+def main():
+    films_data = parse()
+    save(films_data)
 
 
 if __name__ == '__main__':
-    parse_and_save()
+    main()

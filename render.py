@@ -7,15 +7,13 @@ from livereload import Server
 from more_itertools import chunked
 from math import ceil
 from urllib.parse import urljoin
+from dotenv import load_dotenv
 
 
-COUNT_IN_PAGE = 10
-DEST_FOLDER = 'pages/'
-
-
-environment = jinja2.Environment()
-template = environment.from_string("Hello, {{ name }}!")
-template.render(name="World")
+load_dotenv()
+COUNT_IN_PAGE = int(os.getenv('COUNT_IN_PAGE', default=8))
+DEST_FOLDER = os.getenv("DEST_FOLDER", default=r'pages/')
+FILMS_FILE = os.getenv('FILMS_FILE', default=r'films.json')
 
 
 def get_file_info(filepath):
@@ -32,7 +30,7 @@ def on_reload():
     template = env.get_template('template.html')
     os.makedirs(DEST_FOLDER, exist_ok=True)
 
-    films = get_file_info('films.json')
+    films = get_file_info(FILMS_FILE)
     pages = chunked(films, COUNT_IN_PAGE)
     page_count = ceil(len(films) / COUNT_IN_PAGE)
     for number, page in enumerate(pages, 1):
@@ -43,7 +41,7 @@ def on_reload():
             films=page,
             page_count=page_count,
             current_page=number,
-            dest_folder=DEST_FOLDER
+            dest_folder=DEST_FOLDER,
         )
         with open(filepath, 'w', encoding='utf8') as file:
             file.write(rendered_page)
@@ -53,7 +51,7 @@ def watch_file():
     on_reload()
     server = Server()
     server.watch('template.html', on_reload)
-    server.watch('style.css', on_reload)
+    server.watch('assets/style/style.css', on_reload)
     server.serve(root='.', default_filename='pages/index.html')
 
 
